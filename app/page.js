@@ -28,9 +28,9 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true); 
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false); 
+        setIsScrolled(false);
       }
     };
 
@@ -70,7 +70,7 @@ export default function Home() {
       price: "₹ 1,300,000.00",
       description: "41 MM, Automatic, Lucent Steel™",
     },
-    
+
     {
       id: 3,
       image: "assets/pendant.png",
@@ -85,8 +85,7 @@ export default function Home() {
       price: "₹ 390,000.00",
       description: "Pendant, Ethical Rose Gold, Diamonds",
     },
-    
-    
+
     {
       id: 7,
       image: "assets/pendant.png",
@@ -102,7 +101,6 @@ export default function Home() {
       description: "Bracelet, Rose Gold",
     },
   ];
-  
 
   return (
     <div className="w-full">
@@ -168,7 +166,10 @@ export default function Home() {
                         href={item.href}
                         className="transition duration-200 tracking-widest text-sm font-extralight hover:opacity-80"
                       >
-                        {item.title}
+                        <div className="flex justify-between border-b-2">
+                          <div>{item.title}</div>
+                          <div>{">"}</div>
+                        </div>
                       </Link>
                     ))}
                   </nav>
@@ -206,7 +207,10 @@ export default function Home() {
 
           {/* Navbar Secondary Center */}
           <div className="navbar-secondary-center flex justify-center items-center w-full">
-            <Link href="/" className="font-rubik italic md:-translate-x-20 text-3xl font-mono tracking-wide">
+            <Link
+              href="/"
+              className="font-rubik italic md:-translate-x-20 text-3xl font-mono tracking-wide"
+            >
               Chopard
             </Link>
           </div>
