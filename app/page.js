@@ -1,101 +1,311 @@
-import Image from "next/image";
+"use client";
+import { useEffect, useState } from "react";
+import {
+  Globe,
+  Phone,
+  MapPin,
+  Menu,
+  Search,
+  User,
+  Heart,
+  ShoppingBag,
+} from "lucide-react";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation, A11y } from "swiper/modules";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true); // Scrolled down
+      } else {
+        setIsScrolled(false); // At the top
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  const menuItems = [
+    { title: "GIFTS", href: "#" },
+    { title: "WATCHES", href: "#" },
+    { title: "JEWELLERY", href: "#" },
+    { title: "ACCESSORIES", href: "#" },
+    { title: "LA MAISON", href: "#" },
+    { title: "HIGHLIGHTS", href: "#" },
+  ];
+
+  const items = [
+    {
+      id: 1,
+      image: "assets/watch.png",
+      title: "ICE CUBE",
+      price: "₹ 215,000.00",
+      description: "Ring, Ethical Rose Gold, Half-Set Diamonds",
+    },
+    {
+      id: 2,
+      image: "assets/bracelet.png",
+      title: "HAPPY HEARTS",
+      price: "₹ 330,000.00",
+      description: "Bracelet, Rose Gold",
+    },
+    {
+      id: 3,
+      image: "assets/pendant.png",
+      title: "ALPINE EAGLE 41",
+      price: "₹ 1,300,000.00",
+      description: "41 MM, Automatic, Lucent Steel™",
+    },
+    {
+      id: 4,
+      image: "assets/ring.png",
+      title: "ICE CUBE",
+      price: "₹ 390,000.00",
+      description: "Pendant, Ethical Rose Gold, Diamonds",
+    },
+    {
+      id: 5,
+      image: "assets/watch2.jpg",
+      title: "ALPINE EAGLE 41",
+      price: "₹ 1,300,000.00",
+      description: "41 MM, Automatic, Lucent Steel™",
+    },
+    {
+      id: 6,
+      image: "assets/pendant2.png",
+      title: "HAPPY HEARTS",
+      price: "₹ 330,000.00",
+      description: "Bracelet, Rose Gold",
+    },
+    {
+      id: 7,
+      image: "assets/bracelet2.png",
+      title: "ALPINE EAGLE 41",
+      price: "₹ 1,300,000.00",
+      description: "41 MM, Automatic, Lucent Steel™",
+    },
+  ];
+  {
+    /*NOW I AM MAKING THE NAVBAR RESPONSIVE*/
+  }
+
+  return (
+    <div className="w-full">
+      {/* Navigation */}
+      <header
+        className={`w-full fixed top-0 left-0 z-20 transition-all duration-300 ${
+          isScrolled ? "bg-white shadow-md opacity-80" : "bg-transparent"
+        }`}
+      >
+        {/* Navbar Secondary */}
+        <div className="navbar-secondary flex md:flex-row items-center justify-between px-4 md:px-8 py-2 font-medium text-black">
+          {/* Navbar Secondary Start */}
+          <div className="navbar-secondary-start hidden md:flex text-xs items-center space-x-4">
+            <Link
+              href="#"
+              className="flex items-center space-x-1 hover:opacity-80"
+            >
+              <Globe className="h-4 w-4" />
+              <span className="font-thin text-xs">INDIA</span>
+            </Link>
+            <Link
+              href="#"
+              className="flex items-center space-x-1 hover:opacity-80"
+            >
+              <Phone className="h-4 w-4" />
+              <span className="font-thin text-xs">CONTACT US</span>
+            </Link>
+            <Link
+              href="#"
+              className="flex items-center space-x-1 hover:opacity-80"
+            >
+              <MapPin className="h-4 w-4" />
+              <span className="font-thin text-xs">BOUTIQUE</span>
+            </Link>
+          </div>
+
+          {/*For Mobile & Tablet*/}
+          <div className="gap-2 flex">
+            <button
+              onClick={toggleSidebar}
+              type="button"
+              className="hover:opacity-80"
+            >
+              <Menu className="h-5 w-5 flex md:hidden" />
+            </button>
+            <button type="button" className="hover:opacity-80">
+              <Search className="h-5 w-5 flex md:hidden" />
+            </button>
+
+            {isOpen && (
+              <div className="fixed inset-0 bg-white z-50 shadow-lg transition-all duration-300 ease-in-out">
+                <div className="w-full h-full flex flex-col mt-16 px-4 leading-loose">
+                  <button
+                    onClick={toggleSidebar}
+                    className="absolute top-4 right-4 text-gray-800 font-bold text-2xl"
+                  >
+                    × 
+                  </button>
+                  <nav className="flex flex-col space-y-4">
+                    {menuItems.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        className="transition duration-200 tracking-widest text-sm font-extralight hover:opacity-80"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+
+                {/* Navbar Secondary Section - Positioned at the bottom */}
+                <div className="absolute bottom-0 w-full bg-white text-xs items-center space-x-4 px-4 py-2 border-t">
+                  <div className="flex space-x-4">
+                    <Link
+                      href="#"
+                      className="flex items-center space-x-1 hover:opacity-80"
+                    >
+                      <Globe className="h-4 w-4" />
+                      <span className="font-thin text-xs">INDIA</span>
+                    </Link>
+                    <Link
+                      href="#"
+                      className="flex items-center space-x-1 hover:opacity-80"
+                    >
+                      <Phone className="h-4 w-4" />
+                      <span className="font-thin text-xs">CONTACT US</span>
+                    </Link>
+                    <Link
+                      href="#"
+                      className="flex items-center space-x-1 hover:opacity-80"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      <span className="font-thin text-xs">BOUTIQUE</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Navbar Secondary Center */}
+          <div className="navbar-secondary-center flex justify-center">
+            <Link href="/" className="text-3xl font-mono tracking-wide">
+              Chopard
+            </Link>
+          </div>
+
+          {/* Navbar Secondary End */}
+          <div className="navbar-secondary-end flex items-center space-x-4">
+            <button type="button" className="hover:opacity-80">
+              <User className="h-5 w-5 hidden md:flex" />
+            </button>
+            <button type="button" className="hover:opacity-80">
+              <Heart className="h-5 w-5" />
+            </button>
+            <button type="button" className="hover:opacity-80">
+              <ShoppingBag className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Navbar Primary */}
+        <div className="navbar-primary text-black w-full py-2">
+          <nav className="menu hidden md:flex justify-center space-x-8 text-sm font-medium">
+            {menuItems.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="transition duration-200 tracking-widest text-xs hover:opacity-80"
+              >
+                {item.title}
+              </Link>
+            ))}
+            <p>|</p>
+            <button type="button" className="hover:opacity-80">
+              <Search className="h-5 w-5" />
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Banner Section */}
+      <div className="relative h-screen">
+        <video
+          src="/assets/bridge.mp4"
+          autoPlay
+          muted
+          loop
+          className="banner-video w-full h-full absolute top-0 left-0 object-cover"
+        />
+        <div className="absolute top-80 inset-0 flex justify-center items-center z-10 text-center">
+          <div>
+            <p className="text-white text-sm uppercase mb-4">
+              Holiday Season Selection
+            </p>
+            <h1 className="text-4xl text-white md:text-5xl font-serif mb-6">
+              A CHOPARD FAIRYTALE
+            </h1>
+            <button className="px-6 py-2 bg-black text-white hover:bg-gray-700 transition">
+              Shop the Selection
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/*carousel*/}
+      <div className="w-full px-4 py-8 mb-28">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800">
+          Featured Jewelry
+        </h2>
+        <Swiper
+          modules={[Navigation, Pagination, A11y]}
+          spaceBetween={15}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 2.5 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="mySwiper"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          {items.map((item) => (
+            <SwiperSlide key={item.id}>
+              <div className="flex flex-col items-center p-4 border rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out bg-white">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 md:h-56 object-cover rounded-md mb-4"
+                />
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 font-medium my-2">{item.price}</p>
+                <span className="text-sm text-gray-500 text-center">
+                  {item.description}
+                </span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 }
