@@ -28,9 +28,9 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true); // Scrolled down
+        setIsScrolled(true); 
       } else {
-        setIsScrolled(false); // At the top
+        setIsScrolled(false); 
       }
     };
 
@@ -57,12 +57,20 @@ export default function Home() {
       description: "Ring, Ethical Rose Gold, Half-Set Diamonds",
     },
     {
-      id: 2,
-      image: "assets/bracelet.png",
+      id: 6,
+      image: "assets/pendant2.png",
       title: "HAPPY HEARTS",
       price: "₹ 330,000.00",
       description: "Bracelet, Rose Gold",
     },
+    {
+      id: 5,
+      image: "assets/watch2.jpg",
+      title: "ALPINE EAGLE 41",
+      price: "₹ 1,300,000.00",
+      description: "41 MM, Automatic, Lucent Steel™",
+    },
+    
     {
       id: 3,
       image: "assets/pendant.png",
@@ -72,43 +80,36 @@ export default function Home() {
     },
     {
       id: 4,
-      image: "assets/ring.png",
+      image: "assets/pendantnew.png",
       title: "ICE CUBE",
       price: "₹ 390,000.00",
       description: "Pendant, Ethical Rose Gold, Diamonds",
     },
+    
+    
     {
-      id: 5,
-      image: "assets/watch2.jpg",
+      id: 7,
+      image: "assets/pendant.png",
       title: "ALPINE EAGLE 41",
       price: "₹ 1,300,000.00",
       description: "41 MM, Automatic, Lucent Steel™",
     },
     {
-      id: 6,
-      image: "assets/pendant2.png",
+      id: 2,
+      image: "assets/watch.png",
       title: "HAPPY HEARTS",
       price: "₹ 330,000.00",
       description: "Bracelet, Rose Gold",
     },
-    {
-      id: 7,
-      image: "assets/bracelet2.png",
-      title: "ALPINE EAGLE 41",
-      price: "₹ 1,300,000.00",
-      description: "41 MM, Automatic, Lucent Steel™",
-    },
   ];
-  {
-    /*NOW I AM MAKING THE NAVBAR RESPONSIVE*/
-  }
+  
 
   return (
     <div className="w-full">
       {/* Navigation */}
       <header
         className={`w-full fixed top-0 left-0 z-20 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-md opacity-80" : "bg-transparent"
+          isScrolled ? "bg-white shadow-md " : "bg-transparent"
         }`}
       >
         {/* Navbar Secondary */}
@@ -127,7 +128,7 @@ export default function Home() {
               className="flex items-center space-x-1 hover:opacity-80"
             >
               <Phone className="h-4 w-4" />
-              <span className="font-thin text-xs">CONTACT US</span>
+              <span className="font-thin text-xs">CONTACT</span>
             </Link>
             <Link
               href="#"
@@ -158,7 +159,7 @@ export default function Home() {
                     onClick={toggleSidebar}
                     className="absolute top-4 right-4 text-gray-800 font-bold text-2xl"
                   >
-                    × 
+                    ×
                   </button>
                   <nav className="flex flex-col space-y-4">
                     {menuItems.map((item) => (
@@ -204,8 +205,8 @@ export default function Home() {
           </div>
 
           {/* Navbar Secondary Center */}
-          <div className="navbar-secondary-center flex justify-center">
-            <Link href="/" className="text-3xl font-mono tracking-wide">
+          <div className="navbar-secondary-center flex justify-center items-center w-full">
+            <Link href="/" className="font-rubik italic md:-translate-x-20 text-3xl font-mono tracking-wide">
               Chopard
             </Link>
           </div>
