@@ -20,11 +20,6 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, A11y } from "swiper/modules";
 
 export default function Home() {
-  // Initialize Lenis
-  const lenis = new Lenis({
-    autoRaf: true,
-  });
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,6 +28,11 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Initialize Lenis inside useEffect to ensure it runs only on the client side
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
+
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setIsScrolled(true);
@@ -56,9 +56,13 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
       lenis.stop();
     };
-  }, [lenis]);
+  }, []);
 
   useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
+
     const raf = (time) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -67,7 +71,7 @@ export default function Home() {
     requestAnimationFrame(raf);
 
     return () => cancelAnimationFrame(raf);
-  }, [lenis]);
+  }, []);
 
   const menuItems = [
     { title: "GIFTS", href: "#" },
