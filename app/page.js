@@ -40,18 +40,35 @@ export default function Home() {
         setIsScrolled(false);
       }
     };
+
     // Listen for the scroll event and log the event data
     lenis.on("scroll", (e) => {
       console.log(e);
     });
 
+    // Start Lenis
+    lenis.start();
+
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup event listener on component unmount
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Cleanup event listener and stop Lenis on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      lenis.stop();
+    };
+  }, [lenis]);
 
-    
-  }, []);
+  useEffect(() => {
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    return () => cancelAnimationFrame(raf);
+  }, [lenis]);
+
   const menuItems = [
     { title: "GIFTS", href: "#" },
     { title: "WATCHES", href: "#" },
