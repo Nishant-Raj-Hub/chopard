@@ -1,4 +1,6 @@
 "use client";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import { useEffect, useState } from "react";
 import {
   Globe,
@@ -18,6 +20,16 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, A11y } from "swiper/modules";
 
 export default function Home() {
+  // Initialize Lenis
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+
+  // Listen for the scroll event and log the event data
+  lenis.on("scroll", (e) => {
+    console.log(e);
+  });
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
