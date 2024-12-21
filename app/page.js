@@ -25,11 +25,6 @@ export default function Home() {
     autoRaf: true,
   });
 
-  // Listen for the scroll event and log the event data
-  lenis.on("scroll", (e) => {
-    console.log(e);
-  });
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,11 +40,17 @@ export default function Home() {
         setIsScrolled(false);
       }
     };
+    // Listen for the scroll event and log the event data
+    lenis.on("scroll", (e) => {
+      console.log(e);
+    });
 
     window.addEventListener("scroll", handleScroll);
 
     // Cleanup event listener on component unmount
     return () => window.removeEventListener("scroll", handleScroll);
+
+    
   }, []);
   const menuItems = [
     { title: "GIFTS", href: "#" },
